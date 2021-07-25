@@ -7,22 +7,27 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="app">
-      <p>{{ num }}</p>
-      <p>{{ doubleNum }}</p>
-    </div>
-
+    <div id="app">{{ num }}</div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
       new Vue({
         el: "#app",
         data: {
           num: 10,
-          // doubleNum: 10 * 2,
         },
         computed: {
           doubleNum: function () {
             return this.num * 2;
+          },
+        },
+        watch: {
+          num: function (newValue) {
+            this.fetchUserByNumber(newValue);
+          },
+        },
+        methods: {
+          fetchUserByNumber: function (num) {
+            console.log(num);
           },
         },
       });

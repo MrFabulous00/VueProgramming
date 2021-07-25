@@ -8,21 +8,27 @@
   </head>
   <body>
     <div id="app">
-      <p>{{ num }}</p>
-      <p>{{ doubleNum }}</p>
+      {{ num }}
+      <button v-on:click="addNum">increase</button>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
       new Vue({
         el: "#app",
         data: {
           num: 10,
-          // doubleNum: 10 * 2,
         },
-        computed: {
-          doubleNum: function () {
-            return this.num * 2;
+        watch: {
+          num: function () {
+            this.logText();
+          },
+        },
+        methods: {
+          addNum: function () {
+            this.num = this.num + 1;
+          },
+          logText: function () {
+            console.log("changed");
           },
         },
       });
